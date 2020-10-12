@@ -1,0 +1,87 @@
+ <!--
+    
+    Author: Hunter Monaghan
+    Date:  4-19-20
+
+    Filename: JSON.html
+   -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            button{
+                border: 1px solid black;
+                margin: 4px;
+                /* border-radius: 20%; */
+                
+            }
+            button:hover{
+                background-color: #808080;
+            }
+            input{
+                border: 1px solid black;
+                margin: 4px;
+
+            }
+
+            
+        </style>
+    </head>
+    <body>
+       <h1>JSON Movie Object Notation</h1>
+
+       Name of Movie: <input id="movieName" type="text" value="Star Wars"><br><br>
+       Director's Name: <input id="directorName" type="text" value="George Lucas"><br>
+       Director's Studio: <input id="studio" type="text" value="Skywalker Ranch"><br>
+       Number of Films the Director Made:<input id="films" type="number" value="30"><br>
+       Year of Movie: <input id="year" type="number" value="1977"><br>
+
+       <button type="button" onclick="movie();">Make the Movie</button><br>
+
+       JSON text: <span id="IdSpanJson"></span><br><br>
+
+       Movie Name: <span id="outputName"></span><br>
+       Director: <span id="outputDirector"></span><br>
+       Year: <span id="outputYear"></span>
+    </body>
+
+    <script>
+        function movie(){
+            var inputName = document.getElementById("movieName").value;
+            var inputDirectorName = document.getElementById("directorName").value;
+            var inputStudio = document.getElementById("studio").value;
+            var inputFilms = document.getElementById("films").value;
+            var inputYear = document.getElementById("year").value;
+            
+
+
+            var movie = {
+                "name": inputName,
+                "director":{
+                    "dName": inputDirectorName,
+                    "studio": inputStudio,
+                    "films": inputFilms
+                },
+                "year": inputYear
+
+            }
+            //JSON text representation 
+            var movieText = JSON.stringify(movie);
+            //Display my html
+            document.getElementById("IdSpanJson").innerHTML = movieText;
+            //Added red into the output text to make it more visible
+            IdSpanJson.style.color = 'red';
+
+            var reclaimObject = JSON.parse(movieText);
+
+            document.getElementById("outputName").innerHTML = reclaimObject.name;
+            document.getElementById("outputDirector").innerHTML = "name: " + reclaimObject.director.dName + " " + ", studio: " + reclaimObject.director.studio + " " + ", films made: " + reclaimObject.director.films;
+            document.getElementById("outputYear").innerHTML = reclaimObject.year;
+
+            outputName.style.color = 'red';
+            outputDirector.style.color = 'red';
+            outputYear.style.color = 'red';
+
+        }
+    </script>
+</html>
